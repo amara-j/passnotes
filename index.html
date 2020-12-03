@@ -4,16 +4,182 @@
 <head>
     <meta charset="utf-8">
     <title>Passnotes</title>
-    <meta name="description" content="My Page Description">
     <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+    <style>
+        body {
+            background: rgba(26, 25, 25, 0.98);
+        }
+
+        #step1Text {
+            top: 100px;
+            /* height: 75px;
+            width: 675px; */
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 48px;
+            line-height: 75px;
+            color: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            text-align: center;
+
+        }
+
+        #step1Instructions {
+            top: 210px;
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+
+        #keepPromptQuestion {
+            top: 250px;
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+
+
+        #yesPromptButton {
+            top: 300 px;
+            background-color: rgba(26, 25, 25, 0.98);
+            width: 60px;
+            height: 60px;
+            border: 1px solid #FFFFFF;
+            color: magenta;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+
+        #noPromptButton {
+            position: absolute;
+            background-color: rgba(26, 25, 25, 0.98);
+            width: 60px;
+            height: 60px;
+            border: 1px solid #FFFFFF;
+            color: magenta;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        #step2Text {
+            height: 75px;
+            top: 300px;
+            left: 200px;
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 48px;
+            line-height: 75px;
+            color: #5E5D5D;
+            border: 1px solid #000000;
+
+        }
+
+        #step2Instructions {
+            left: 200px;
+            top: 410px;
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-size: 18px;
+            color: #5E5D5D;
+        }
+
+
+        #step3Text {
+            height: 75px;
+            top: 500px;
+            left: 400px;
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 48px;
+            line-height: 75px;
+            color: #5E5D5D;
+            border: 1px solid #000000;
+
+        }
+
+        #step3Instructions {
+            left: 400px;
+            top: 610px;
+            position: absolute;
+            font-family: Roboto;
+            font-style: normal;
+            font-size: 18px;
+            color: #5E5D5D;
+        }
+
+        #playButton {
+            background-color: rgba(26, 25, 25, 0.98);
+            border: 1px solid #FFFFFF;
+            color: limegreen;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        #stopButton {
+            background-color: rgba(26, 25, 25, 0.98);
+            width: 60px;
+            height: 60px;
+            border: 1px solid #FFFFFF;
+            color: gold;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        #recordButton {
+            background-color: rgba(26, 25, 25, 0.98);
+            width: 60px;
+            height: 60px;
+            border: 1px solid #FFFFFF;
+            color: magenta;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+    </style>
+
 </head>
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
-    <button onclick="play()">Play</button>
-    <button onclick="record()">Record</button>
-    <button onclick="stop()">Stop</button>
+    <button id="recordButton" onclick="record()">Record</button>
+    <button id="stopButton" onclick="stop()">Stop</button>
+    <button id="playButton" onclick="play()">Play</button>
     <script src="main.js"></script>
+    <p id="step1Text">Perform your musical prompt</p>
+    <p id="step1Instructions">Use the keyboard to practice. Press record when you're ready. When you're done, press
+        stop.</p>
+    <p id="keepPromptQuestion">Set this take as your prompt?</p>
+    <button id="yesPromptButton">Yes</button>
+    <button id="noPromptButton">No</button>
+    <p id="step2Text">Perform your musical response</p>
+    <p id="step2Instructions">Press record again to save a musical response to your prompt.</p>
+    <p id="step3Text">Confirm your musical response</p>
+    <p id="step3Instructions">Press record and perform your response one more time.</p>
+
 </body>
 
 </html>
