@@ -37,14 +37,17 @@ let timeElapsed = 0;
 let isRecording = 0;
 
 function record() {
+    showElement("stopButton")
     timeElapsed = 0
     isRecording = 1
     prompt = []
 }
 
+// currently throws error if you stop before recording anything
 function stop() {
     isRecording = 0
-    console.log(processPerformance(prompt))
+    showElement("playButton")
+    processPerformance(prompt)
 }
 
 document.addEventListener('keydown', function (e) {
@@ -66,13 +69,8 @@ function processPerformance(array) {
     return relativeArray
 }
 
-
-// const original = [[0, "C4"], [734, "D4"], [1052, "D#4"], [1542, "F4"], [2043, "G4"], [2563, "G4"], [3084, "G4"]]
-// const take2 = [[0, "C4"], [748, "D4"], [1001, "D#4"], [1505, "F4"], [1999, "G4"], [2513, "G4"], [3084, "G4"]]
-
-
-
-const backBeatThreshold = 70; // amount of difference (millisec) to allow 
+const backBeatThreshold = 70; // amount of rhythmic difference (millisec) to allow 
+// should we somehow be accounting for time stretches/tempo differences? :/
 
 //function to compute the difference between two performances
 function passNoteAuthenticator(original, take2,) {
@@ -102,13 +100,24 @@ function passNoteAuthenticator(original, take2,) {
     }
 }
 
-// console.log(passNoteAuthenticator(original, take2, backBeatThreshold))
+function hideElement(element) {
+    document.getElementById(element).style.display = "none";
+}
 
+function showElement(element) {
+    document.getElementById(element).style.display = "inline";
+}
 
-// hide and show record/stop buttons
-// when page is loaded: show record button 
-// when record is pressed:
-// show stop button
-// when stop is pressed: 
-// show play button and "should i keep this take" button
-// when yes is pressed to keeping take, start the cycle again.
+function titleHighlightUp(title) {
+    document.getElementById(title).style.color = "white";
+    document.getElementById(title).style.border = "1px solid #FFFFFF";
+}
+
+function textHighlightUp(text) {
+    document.getElementById(text).style.color = "white";
+}
+
+function highlightDown(element) {
+    document.getElementById(element).style.color = "#5E5D5D";
+    document.getElementById(element).style.border = "1px solid #000000";
+}

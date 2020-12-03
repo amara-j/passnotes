@@ -55,7 +55,7 @@
             color: magenta;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: none;
             font-size: 16px;
         }
 
@@ -69,7 +69,7 @@
             color: magenta;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: none;
             font-size: 16px;
         }
 
@@ -132,7 +132,7 @@
             height: 60px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: none;
             font-size: 16px;
         }
 
@@ -144,7 +144,7 @@
             color: gold;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: none;
             font-size: 16px;
         }
 
@@ -168,18 +168,17 @@
     <button id="recordButton" onclick="record()">Record</button>
     <button id="stopButton" onclick="stop()">Stop</button>
     <button id="playButton" onclick="play()">Play</button>
-    <script src="main.js"></script>
     <p id="step1Text">Perform your musical prompt</p>
     <p id="step1Instructions">Use the keyboard to practice. Press record when you're ready. When you're done, press
         stop.</p>
     <p id="keepPromptQuestion">Set this take as your prompt?</p>
-    <button id="yesPromptButton">Yes</button>
-    <button id="noPromptButton">No</button>
+    <button id="yesPromptButton" onclick="keepPromptTake()">Yes</button>
+    <button id="noPromptButton" onclick="discardPromptTake()">No</button>
     <p id="step2Text">Perform your musical response</p>
     <p id="step2Instructions">Press record again to save a musical response to your prompt.</p>
     <p id="step3Text">Confirm your musical response</p>
     <p id="step3Instructions">Press record and perform your response one more time.</p>
-
+    <script src="main.js"></script>
 </body>
 
 </html>
