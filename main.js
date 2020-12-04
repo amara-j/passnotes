@@ -1,20 +1,13 @@
 let prompt = []
 let take1 = []
 let take2 = []
+let authenticationStep = 1
 
 const synth = new Tone.Synth().toDestination();
+let timeElapsed = 0;
+let isRecording = 0;
 
-function play() {
-    Tone.start()
-    for (let i = 0; i < prompt.length; i++) {
-        setTimeout(function () {
-            synth.triggerAttackRelease(prompt[i][1], 0.1)
-        }, prompt[i][0]);
-    }
-
-}
-
-asciToNote = {
+const asciToNote = {
     "KeyA": "C4",
     "KeyW": "C#4",
     "KeyS": "D4",
@@ -33,9 +26,6 @@ asciToNote = {
     "Semicolon": "E5"
 }
 
-let timeElapsed = 0;
-let isRecording = 0;
-
 function record() {
     showElement("stopButton")
     timeElapsed = 0
@@ -43,22 +33,44 @@ function record() {
     prompt = []
 }
 
-// currently throws error if you stop before recording anything
 function stop() {
     isRecording = 0
-    showElement("playButton")
-    processPerformance(prompt)
+    if (prompt.length > 0) {
+        processPerformance(prompt)
+        hideElement("step1Instructions")
+        showElement("playButton")
+        showElement("keepPromptQuestion")
+        highlightDown("step1Instructions")
+        showElement("yesPromptButton")
+        showElement("noPromptButton")
+    }
 }
+
+function play() {
+    Tone.start()
+    for (let i = 0; i < prompt.length; i++) {
+        setTimeout(function () {
+            synth.triggerAttackRelease(prompt[i][1], 0.1)
+        }, prompt[i][0]);
+    }
+}
+
+
+function recordHelper(array, note) { array.push([Date.now(), note]) }
+
 
 document.addEventListener('keydown', function (e) {
     let note = asciToNote[e.code];
     if (note && isRecording === 1) {
-        prompt.push([Date.now(), note])
+        recordHelper(prompt, note)
+        //prompt.push([Date.now(), note])
     }
     if (note) {
         synth.triggerAttackRelease(note, 0.1)
     }
 });
+
+
 
 function processPerformance(array) {
     let subtractMe = array[0][0]
@@ -107,17 +119,26 @@ function hideElement(element) {
 function showElement(element) {
     document.getElementById(element).style.display = "inline";
 }
-
-function titleHighlightUp(title) {
-    document.getElementById(title).style.color = "white";
-    document.getElementById(title).style.border = "1px solid #FFFFFF";
-}
-
-function textHighlightUp(text) {
-    document.getElementById(text).style.color = "white";
+function highlightUp(element) {
+    document.getElementById(element).style.opacity = 1;
 }
 
 function highlightDown(element) {
-    document.getElementById(element).style.color = "#5E5D5D";
-    document.getElementById(element).style.border = "1px solid #000000";
+    document.getElementById(element).style.opacity = 0.1;
+}
+
+function keepPromptTake() {
+    authenticationStep ++
+    console.log("authentication continuing to step", authenticationStep)
+    highlightDown("step1Text")
+    hideElement("keepPromptQuestion")
+    hideElement("yesPromptButton")
+    hideElement("noPromptButton")
+    highlightUp("step2Text")
+    highlightUp("step2Instructions")
+    showElement("step2Instructions")
+}
+
+function discardPromptTake() {
+    document.location.reload();
 }
