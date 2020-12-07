@@ -11,140 +11,110 @@
             background: rgba(26, 25, 25, 0.98);
         }
 
-        #step1Text {
-            top: 100px;
+        p {
             position: absolute;
             font-family: Roboto;
             font-style: normal;
             font-weight: 900;
             font-size: 48px;
-            line-height: 75px;
-            color: #FFFFFF;
-            border: 1px solid #FFFFFF;
-            text-align: center;
+            color: white;
+            border: 2px solid white;
+            text-align: left;
+            vertical-align: bottom;
+            padding: 10px 10px 10px 10px;
+            opacity: 0.1;
+        }
 
+        #step1Text {
+            opacity: 1;
+            top: 0px;
+            width: 670px;
         }
 
         #step1Instructions {
-            top: 100px;
-            left: 675px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
+            opacity: 1;
+            top: 0px;
+            left: 750px;
             font-size: 36px;
-            color: #FFFFFF;
-        }
-
-        #keepPromptQuestion {
-            top: 125px;
-            left: 700px;
-            position: absolute;
-            font-size: 36px;
-            color: #FFFFFF;
-            font-family: Roboto;
-            font-style: normal;
-            display: none;
-        }
-
-        #yesPromptButton {
-            position: relative;
-            top: 200px;
-            left: 650px;
-            background-color: rgba(26, 25, 25, 0.98);
-            width: 40px;
-            height: 40px;
-            border: 1px solid #FFFFFF;
-            color: magenta;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
-        }
-
-        #noPromptButton {
-            position: relative;
-            top: 200px;
-            left: 700px;
-            background-color: rgba(26, 25, 25, 0.98);
-            width: 40px;
-            height: 40px;
-            border: 1px solid #FFFFFF;
-            color: magenta;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
         }
 
         #step2Text {
-            height: 75px;
-            opacity: 0.1;
             top: 300px;
             left: 150px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 48px;
-            line-height: 75px;
-            color: #FFFFFF;
-            border: 1px solid #FFFFFF;
-
         }
 
         #step2Instructions {
             left: 840px;
             top: 310px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
             font-size: 36px;
-            color: white;
             display: none;
         }
 
-
         #step3Text {
-            opacity: 0.1;
-            height: 75px;
-            top: 500px;
+            top: 600px;
             left: 300px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 48px;
-            line-height: 75px;
-            color: #FFFFFF;
-            border: 1px solid #FFFFFF;
-
         }
 
         #step3Instructions {
             left: 980px;
-            top: 500px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
+            top: 600px;
             font-size: 36px;
-            color: white;
-             display: none;
+            display: none;
         }
 
-
-        #playButton {
+        .continueButton {
+            position: relative;
             background-color: rgba(26, 25, 25, 0.98);
+            width: 75px;
+            height: 40px;
             border: 1px solid #FFFFFF;
-            color: limegreen;
-            width: 60px;
-            height: 60px;
+            color: magenta;
             text-align: center;
             text-decoration: none;
             display: none;
             font-size: 16px;
         }
 
-        #stopButton {
+        #continueButton1 {
+            top: 230px;
+            left: 500px;
+        }
+
+        #continueButton2 {
+            top: 400px;
+            left: 750px;
+        }
+        
+        .recordButton {
+            position: relative;
+            background-color: rgba(26, 25, 25, 0.98);
+            width: 60px;
+            height: 60px;
+            border: 1px solid white;
+            color: magenta;
+            text-align: center;
+            text-decoration: none;
+            display: none;
+            font-size: 16px;
+        }
+
+        #recordButton1 {
+            top: 120px;
+            display: inline-block;
+        }
+
+        #recordButton2 {
+            left: 142px;
+            top: 420px;
+        }
+
+        #recordButton3 {
+            left: 292px;
+            top: 720px;
+        }
+
+        .stopButton {
+            position: relative;
             background-color: rgba(26, 25, 25, 0.98);
             width: 60px;
             height: 60px;
@@ -156,41 +126,146 @@
             font-size: 16px;
         }
 
-        #recordButton {
+        #stopButton1 {
+            top: 120px;
+        }
+
+        #stopButton2 {
+            left: 142px;
+            top: 420px;
+        }
+
+        #stopButton3 {
+            left: 292px;
+            top: 720px;
+        }
+
+        .playButton {
+            position: relative;
             background-color: rgba(26, 25, 25, 0.98);
+            border: 1px solid #FFFFFF;
+            color: limegreen;
             width: 60px;
+            height: 60px;
+            text-align: center;
+            text-decoration: none;
+            display: none;
+            font-size: 16px;
+        }
+
+        #playButton1 {
+            top: 120px;
+        }
+
+        #playButton2 {
+            left: 142px;
+            top: 420px;
+        }
+
+        #playButton3 {
+            left: 292px;
+            top: 720px;
+        }
+
+        #continueButton3{
+            position: relative;
+            top: 720px;
+            left: 850px;
+            background-color: rgba(26, 25, 25, 0.98);
+            width: 125px;
             height: 60px;
             border: 1px solid #FFFFFF;
             color: magenta;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
+            display: none;
+            font-size: 16px;
+        }
+
+        #authFailed {
+            position: absolute;
+            top: 50%;
+            left: 540px;
+            background-color: rgba(26, 25, 25, 0.98);
+            border: 1px solid red;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: red;
+            text-align: center;
+            text-decoration: none;
+            display: none;
+            font-size: 16px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 24px;
+        }
+
+        #note {
+            display: absolute;
+            padding-top: 0px;
+            top: 50%;
+            left: 50%;
+            height: 500px;
+            width: 500px;
+            background-color: #FFDF64;
+            text-align: left;
+            resize: both;
+            display: none;
+            border: 3px solid white;
+            box-shadow: 0 0 10px magenta;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 24px;
+        }
+
+        #saveNote {
+            position: absolute;
+            top: 20px;
+            left: 520px;
+            background-color: black;
+            width: 60px;
+            height: 60px;
+            border: 1px solid #FFFFFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: none;
             font-size: 16px;
         }
     </style>
-
 </head>
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
-    <button id="recordButton" onclick="record()">Record</button>
-    <button id="stopButton" onclick="stop()">Stop</button>
-    <button id="playButton" onclick="play()">Play</button>
-    <p id="step1Text">Perform your musical prompt</p>
-    <p id="step1Instructions">Use the keyboard to practice. <br>
+    <button class='recordButton' id="recordButton1" onclick="record('recordButton1', prompt)">Record</button>
+    <button class='stopButton' id="stopButton1" onclick="generalizedStop('stopButton1', prompt)">Stop</button>
+    <button class='playButton' id="playButton1" onclick="play(prompt)">Play</button>
+    <p class='text' id="step1Text">Perform your musical prompt</p>
+    <p class='text' id="step1Instructions">Use the keyboard to practice. <br>
         Press record when you're ready. <br>
         When you're done, press stop.</p>
-    <p id="keepPromptQuestion">Set this take as your prompt?</p>
-    <button id="yesPromptButton" onclick="keepPromptTake()">Yes</button>
-    <button id="noPromptButton" onclick="discardPromptTake()">No</button>
-    <p id="step2Text">Perform your musical response</p>
-    <p id="step2Instructions">Press record again to save a <br>
+    <button class='continueButton' id="continueButton1" onclick="keepPrompt()">Continue</button>
+    <button class='recordButton' id="recordButton2" onclick="record('recordButton2', take1)">Record</button>
+    <button class='stopButton' id="stopButton2" onclick="generalizedStop('stopButton2', take1)">Stop</button>
+    <button class='playButton' id="playButton2" onclick="play(take1)">Play</button>
+    <p class='text' id="step2Text">Perform your musical response</p>
+    <p class='text' id="step2Instructions">Press record again to save a <br>
         response to your prompt. <br>
         Press stop when you're done.</p>
-    <p id="step3Text">Confirm your musical response</p>
-    <p id="step3Instructions">Press record, perform your response again, then press stop.
-
-    </p>
+    <button class='continueButton' id="continueButton2" onclick="keepTake1()">Continue</button>
+    <p class='text' id="step3Text">Confirm your musical response</p>
+    <p class='text' id="step3Instructions">Confirm your response <br> by recording again.</p>
+    <button class='recordButton' id="recordButton3" onclick="record('recordButton3', take2)">Record</button>
+    <button class='stopButton' id="stopButton3" onclick="generalizedStop('stopButton3', take2)">Stop</button>
+    <button class='playButton' id="playButton3" onclick="play(take2)">Play</button>
+    <button id="continueButton3" onclick="keepTake2()">Authenticate</button>
+    <button id="authFailed">AUTHENTICATION FAILED</button>
+    <textarea type="text" id="note"> </textarea>
+    <button id="saveNote" onclick="saveNote()">Save</button>
     <script src="main.js"></script>
 </body>
 
