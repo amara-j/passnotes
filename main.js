@@ -3,6 +3,9 @@ let take1 = []
 let take2 = []
 let authenticationStep = 1
 
+const continueText1 = "Record as many times as you like until you're happy with your take.";
+const continueText2 = "Press continue to save your take.";
+
 const synth = new Tone.Synth().toDestination();
 let timeElapsed = 0;
 let isRecording = 0;
@@ -26,35 +29,22 @@ const asciToNote = {
     "Semicolon": "E5"
 }
 
-function recordPrompt() {
-    showElement("stopButton1")
+function record(selfID, recordArray) {
+    console.log('we be generalizin')
+    const buttonIndex = selfID.slice(-1);
+    showElement(`stopButton${buttonIndex}`)
     timeElapsed = 0
     isRecording = 1
-    prompt = []
-}
-
-function recordTake1() {
-    showElement("stopButton2")
-    timeElapsed = 0
-    isRecording = 1
-    take1 = []
-}
-
-function recordTake2() {
-    showElement("stopButton3")
-    timeElapsed = 0
-    isRecording = 1
-    take2 = []
+    recordArray = []
 }
 
 function stopPrompt() {
     isRecording = 0
     if (prompt.length > 0) {
         processPerformance(prompt)
-        hideElement("step1Instructions")
         showElement("playButton1")
-        showElement("keepPromptQuestion")
-        showElement("yesPromptButton")
+        showElement("continueButton1")
+        updateText("step1Instructions", continueText1)
     }
 }
 
@@ -62,10 +52,9 @@ function stopTake1() {
     isRecording = 0
     if (take1.length > 0) {
         processPerformance(take1)
-        hideElement("step2Instructions")
         showElement("playButton2")
-        showElement("keepTake1Question")
-        showElement("yesTake1Button")
+        showElement("continueButton2")
+        updateText("step2Instructions", continueText2)
         console.log(take1)
     }
 }
@@ -76,7 +65,7 @@ function stopTake2() {
         processPerformance(take2)
         hideElement("step3Instructions")
         showElement("playButton3")
-        showElement("yesTake2Button")
+        showElement("authButton")
         console.log(take2)
     }
 }
@@ -153,6 +142,7 @@ function passNoteAuthenticator(original, take2,) {
     { return false }
 }
 
+function updateText(element, newText) { document.getElementById(element).innerHTML = newText }
 
 function hideElement(element) { document.getElementById(element).style.display = "none"; }
 
@@ -163,12 +153,12 @@ function highlightDown(element) { document.getElementById(element).style.opacity
 
 function keepPrompt() {
     authenticationStep++
+    hideElement("step1Instructions")
     hideElement("recordButton1")
     hideElement("stopButton1")
     hideElement("playButton1")
     highlightDown("step1Text")
-    hideElement("keepPromptQuestion")
-    hideElement("yesPromptButton")
+    hideElement("continueButton1")
     highlightUp("step2Text")
     highlightUp("step2Instructions")
     showElement("step2Instructions")
@@ -181,8 +171,8 @@ function keepTake1() {
     hideElement("stopButton2")
     hideElement("playButton2")
     highlightDown("step2Text")
-    hideElement("keepTake1Question")
-    hideElement("yesTake1Button")
+    hideElement("step2Instructions")
+    hideElement("continueButton2")
     highlightUp("step3Text")
     showElement("step3Instructions")
     showElement("recordButton3")
@@ -193,8 +183,8 @@ function keepTake2() {
     hideElement("recordButton3")
     hideElement("stopButton3")
     hideElement("playButton3")
-    highlightDown("step3Text")
-    hideElement("yesTake2Button")
+    // highlightDown("step3Text")
+    hideElement("authButton")
     console.log("AUTHENTICATION TRIGGERED")
     console.log(passNoteAuthenticator(take1, take2))
     tryAuthentication(take1, take2)
@@ -204,7 +194,7 @@ function tryAuthentication(take1, take2) {
     hideElement("step1Text")
     hideElement("step2Text")
     hideElement("step3Text")
-    hideElement("yesTake2Button")
+    hideElement("authButton")
     if (passNoteAuthenticator(take1, take2)) {
         authenticationStep++
         document.body.style.backgroundColor = "lightSkyBlue";
@@ -217,6 +207,8 @@ function tryAuthentication(take1, take2) {
     }
 }
 
+
+
 // function saveNote() {
 //     var data = {
 //         "prompt": prompt, 
@@ -224,5 +216,5 @@ function tryAuthentication(take1, take2) {
 //         "content":,document.getElementById('note').value
 //     }
 //     console.log(data)
-    
+
 // }

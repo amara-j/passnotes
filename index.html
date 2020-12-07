@@ -11,52 +11,59 @@
             background: rgba(26, 25, 25, 0.98);
         }
 
-        #step1Text {
-            top: 0px;
+        p {
             position: absolute;
-            width: 670px;
             font-family: Roboto;
             font-style: normal;
             font-weight: 900;
             font-size: 48px;
-            line-height: 75px;
-            color: #FFFFFF;
-            border: 2px solid #FFFFFF;
+            color: white;
+            border: 2px solid white;
             text-align: left;
             vertical-align: bottom;
+            padding: 10px 10px 10px 10px;
+            opacity: 0.1;
+        }
+
+        #step1Text {
+            opacity: 1;
+            top: 0px;
+            width: 670px;
         }
 
         #step1Instructions {
+            opacity: 1;
             top: 0px;
             left: 750px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
             font-size: 36px;
-            color: #FFFFFF;
-            height: 125px;
-            width: 500px;
-            text-align: left;
-            padding: 10px 10px 10px 10px;
-            vertical-align: bottom;
         }
 
-        #keepPromptQuestion {
-            top: 125px;
-            left: 700px;
-            width: 500px;
-            position: absolute;
+        #step2Text {
+            top: 300px;
+            left: 150px;
+        }
+
+        #step2Instructions {
+            left: 840px;
+            top: 310px;
             font-size: 36px;
-            color: #FFFFFF;
-            font-family: Roboto;
-            font-style: normal;
             display: none;
         }
 
-        #yesPromptButton {
+        #step3Text {
+            top: 600px;
+            left: 300px;
+        }
+
+        #step3Instructions {
+            left: 980px;
+            top: 600px;
+            font-size: 36px;
+            display: none;
+        }
+
+        .continueButton {
             position: relative;
-            top: 230px;
-            left: 500px;
             background-color: rgba(26, 25, 25, 0.98);
             width: 75px;
             height: 40px;
@@ -68,113 +75,23 @@
             font-size: 16px;
         }
 
-        #step2Text {
-            height: 75px;
-            opacity: 0.1;
-            top: 300px;
-            left: 150px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 48px;
-            line-height: 75px;
-            color: #FFFFFF;
-            border: 1px solid #FFFFFF;
-
+        #continueButton1 {
+            top: 230px;
+            left: 500px;
         }
 
-        #keepTake1Question {
-            top: 325px;
-            left: 850px;
-            width: 500px;
-            position: absolute;
-            font-size: 36px;
-            color: white;
-            font-family: Roboto;
-            font-style: normal;
-            display: none;
-        }
-
-
-        #yesTake1Button {
-            position: relative;
+        #continueButton2 {
             top: 400px;
             left: 750px;
+        }
+        
+        .recordButton {
+            position: relative;
             background-color: rgba(26, 25, 25, 0.98);
-            width: 74px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             border: 1px solid white;
             color: magenta;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
-        }
-
-
-        #step2Instructions {
-            left: 840px;
-            top: 310px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
-            font-size: 36px;
-            color: white;
-            display: none;
-        }
-
-
-        #step3Text {
-            opacity: 0.1;
-            height: 75px;
-            top: 600px;
-            left: 300px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 48px;
-            line-height: 75px;
-            color: #FFFFFF;
-            border: 1px solid #FFFFFF;
-
-        }
-
-        #step3Instructions {
-            left: 980px;
-            top: 600px;
-            position: absolute;
-            font-family: Roboto;
-            font-style: normal;
-            font-size: 36px;
-            color: white;
-            display: none;
-        }
-
-
-        #playButton1 {
-            position: relative;
-            top: 120px;
-            background-color: rgba(26, 25, 25, 0.98);
-            border: 1px solid #FFFFFF;
-            color: limegreen;
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
-        }
-
-        #stopButton1 {
-            position: relative;
-            top: 120px;
-            background-color: rgba(26, 25, 25, 0.98);
-            width: 60px;
-            height: 60px;
-            border: 1px solid #FFFFFF;
-            color: gold;
             text-align: center;
             text-decoration: none;
             display: none;
@@ -182,84 +99,22 @@
         }
 
         #recordButton1 {
-            position: relative;
             top: 120px;
-            background-color: rgba(26, 25, 25, 0.98);
-            width: 60px;
-            height: 60px;
-            border: 1px solid white;
-            color: magenta;
-            text-align: center;
-            text-decoration: none;
             display: inline-block;
-            font-size: 16px;
         }
-
 
         #recordButton2 {
-            position: relative;
             left: 142px;
             top: 420px;
-            background-color: rgba(26, 25, 25, 0.98);
-            width: 60px;
-            height: 60px;
-            border: 1px solid white;
-            color: magenta;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
-        }
-
-        #stopButton2 {
-            position: relative;
-            left: 142px;
-            top: 420px;
-            background-color: rgba(26, 25, 25, 0.98);
-            width: 60px;
-            height: 60px;
-            border: 1px solid #FFFFFF;
-            color: gold;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
-        }
-
-        #playButton2 {
-            position: relative;
-            left: 142px;
-            top: 420px;
-            background-color: rgba(26, 25, 25, 0.98);
-            border: 1px solid #FFFFFF;
-            color: limegreen;
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
         }
 
         #recordButton3 {
-            position: relative;
             left: 292px;
             top: 720px;
-            background-color: rgba(26, 25, 25, 0.98);
-            width: 60px;
-            height: 60px;
-            border: 1px solid white;
-            color: magenta;
-            text-align: center;
-            text-decoration: none;
-            display: none;
-            font-size: 16px;
         }
 
-        #stopButton3 {
+        .stopButton {
             position: relative;
-            left: 292px;
-            top: 720px;
             background-color: rgba(26, 25, 25, 0.98);
             width: 60px;
             height: 60px;
@@ -271,10 +126,22 @@
             font-size: 16px;
         }
 
-        #playButton3 {
-            position: relative;
+        #stopButton1 {
+            top: 120px;
+        }
+
+        #stopButton2 {
+            left: 142px;
+            top: 420px;
+        }
+
+        #stopButton3 {
             left: 292px;
             top: 720px;
+        }
+
+        .playButton {
+            position: relative;
             background-color: rgba(26, 25, 25, 0.98);
             border: 1px solid #FFFFFF;
             color: limegreen;
@@ -286,7 +153,21 @@
             font-size: 16px;
         }
 
-        #yesTake2Button {
+        #playButton1 {
+            top: 120px;
+        }
+
+        #playButton2 {
+            left: 142px;
+            top: 420px;
+        }
+
+        #playButton3 {
+            left: 292px;
+            top: 720px;
+        }
+
+        #authButton {
             position: relative;
             top: 720px;
             left: 850px;
@@ -341,7 +222,7 @@
             font-size: 24px;
         }
 
-        #saveNote{
+        #saveNote {
             position: absolute;
             top: 20px;
             left: 520px;
@@ -360,30 +241,28 @@
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
-    <button id="recordButton1" onclick="recordPrompt()">Record</button>
-    <button id="stopButton1" onclick="stopPrompt()">Stop</button>
-    <button id="playButton1" onclick="play(prompt)">Play</button>
-    <p id="step1Text">Perform your musical prompt</p>
-    <p id="step1Instructions">Use the keyboard to practice. <br>
+    <button class='recordButton' id="recordButton1" onclick="record('recordButton1', prompt)">Record</button>
+    <button class='stopButton' id="stopButton1" onclick="stopPrompt()">Stop</button>
+    <button class='playButton' id="playButton1" onclick="play(prompt)">Play</button>
+    <p class='text' id="step1Text">Perform your musical prompt</p>
+    <p class='text' id="step1Instructions">Use the keyboard to practice. <br>
         Press record when you're ready. <br>
         When you're done, press stop.</p>
-    <p id="keepPromptQuestion">Record as many times as you like until you're happy with your take.</p>
-    <button id="yesPromptButton" onclick="keepPrompt()">Continue</button>
-    <button id="recordButton2" onclick="recordTake1()">Record</button>
-    <button id="stopButton2" onclick="stopTake1()">Stop</button>
-    <button id="playButton2" onclick="play(take1)">Play</button>
-    <p id="step2Text">Perform your musical response</p>
-    <p id="step2Instructions">Press record again to save a <br>
+    <button class='continueButton' id="continueButton1" onclick="keepPrompt()">Continue</button>
+    <button class='recordButton' id="recordButton2" onclick="record('recordButton2', take1)">Record</button>
+    <button class='stopButton' id="stopButton2" onclick="stopTake1()">Stop</button>
+    <button class='playButton' id="playButton2" onclick="play(take1)">Play</button>
+    <p class='text' id="step2Text">Perform your musical response</p>
+    <p class='text' id="step2Instructions">Press record again to save a <br>
         response to your prompt. <br>
         Press stop when you're done.</p>
-    <p id="keepTake1Question">Press continue to save your take.</p>
-    <button id="yesTake1Button" onclick="keepTake1()">Continue</button>
-    <p id="step3Text">Confirm your musical response</p>
-    <p id="step3Instructions">Confirm your response <br> by recording again.</p>
-    <button id="recordButton3" onclick="recordTake2()">Record</button>
-    <button id="stopButton3" onclick="stopTake2()">Stop</button>
-    <button id="playButton3" onclick="play(take2)">Play</button>
-    <button id="yesTake2Button" onclick="keepTake2()">Authenticate</button>
+    <button class='continueButton' id="continueButton2" onclick="keepTake1()">Continue</button>
+    <p class='text' id="step3Text">Confirm your musical response</p>
+    <p class='text' id="step3Instructions">Confirm your response <br> by recording again.</p>
+    <button class='recordButton' id="recordButton3" onclick="record('recordButton3', take2)">Record</button>
+    <button class='stopButton' id="stopButton3" onclick="stopTake2()">Stop</button>
+    <button class='playButton' id="playButton3" onclick="play(take2)">Play</button>
+    <button id="authButton" onclick="keepTake2()">Authenticate</button>
     <button id="authFailed">AUTHENTICATION FAILED</button>
     <textarea type="text" id="note"> </textarea>
     <button id="saveNote" onclick="saveNote()">Save</button>
