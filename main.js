@@ -26,32 +26,68 @@ const asciToNote = {
     "Semicolon": "E5"
 }
 
-function record() {
-    showElement("stopButton")
+function recordPrompt() {
+    showElement("stopButton1")
     timeElapsed = 0
     isRecording = 1
     prompt = []
 }
 
-function stop() {
+function recordTake1() {
+    showElement("stopButton2")
+    timeElapsed = 0
+    isRecording = 1
+    take1 = []
+}
+
+function recordTake2() {
+    showElement("stopButton3")
+    timeElapsed = 0
+    isRecording = 1
+    take2 = []
+}
+
+function stopPrompt() {
     isRecording = 0
     if (prompt.length > 0) {
         processPerformance(prompt)
         hideElement("step1Instructions")
-        showElement("playButton")
+        showElement("playButton1")
         showElement("keepPromptQuestion")
-        highlightDown("step1Instructions")
         showElement("yesPromptButton")
-        showElement("noPromptButton")
     }
 }
 
-function play() {
+function stopTake1() {
+    isRecording = 0
+    if (take1.length > 0) {
+        processPerformance(take1)
+        hideElement("step2Instructions")
+        showElement("playButton2")
+        showElement("keepTake1Question")
+        showElement("yesTake1Button")
+        console.log(take1)
+    }
+}
+
+function stopTake2() {
+    isRecording = 0
+    if (take2.length > 0) {
+        processPerformance(take2)
+        hideElement("step3Instructions")
+        showElement("playButton3")
+        showElement("yesTake2Button")
+        console.log(take2)
+    }
+}
+
+
+function play(array) {
     Tone.start()
-    for (let i = 0; i < prompt.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         setTimeout(function () {
-            synth.triggerAttackRelease(prompt[i][1], 0.1)
-        }, prompt[i][0]);
+            synth.triggerAttackRelease(array[i][1], 0.1)
+        }, array[i][0]);
     }
 }
 
@@ -61,16 +97,19 @@ function recordHelper(array, note) { array.push([Date.now(), note]) }
 
 document.addEventListener('keydown', function (e) {
     let note = asciToNote[e.code];
-    if (note && isRecording === 1) {
-        recordHelper(prompt, note)
-        //prompt.push([Date.now(), note])
-    }
-    if (note) {
+    if (note && authenticationStep < 4) {
         synth.triggerAttackRelease(note, 0.1)
     }
+    if (note && isRecording === 1 && authenticationStep === 1) {
+        recordHelper(prompt, note)
+    }
+    if (note && isRecording === 1 && authenticationStep === 2) {
+        recordHelper(take1, note)
+    }
+    if (note && isRecording === 1 && authenticationStep === 3) {
+        recordHelper(take2, note)
+    }
 });
-
-
 
 function processPerformance(array) {
     let subtractMe = array[0][0]
@@ -81,7 +120,7 @@ function processPerformance(array) {
     return relativeArray
 }
 
-const backBeatThreshold = 70; // amount of rhythmic difference (millisec) to allow 
+const backBeatThreshold = 500; // amount of rhythmic difference (millisec) to allow 
 // should we somehow be accounting for time stretches/tempo differences? :/
 
 //function to compute the difference between two performances
@@ -108,37 +147,82 @@ function passNoteAuthenticator(original, take2,) {
         console.log("same length:", sameLength)
         console.log("same notes:", sameNotes)
         console.log("same rhythm:", sameRhythm)
-        return sameLength, sameNotes, sameRhythm
+        // return sameLength, sameNotes, sameRhythm
     }
+    if (sameLength && sameNotes && sameRhythm) { return true }
+    { return false }
 }
 
-function hideElement(element) {
-    document.getElementById(element).style.display = "none";
-}
 
-function showElement(element) {
-    document.getElementById(element).style.display = "inline";
-}
-function highlightUp(element) {
-    document.getElementById(element).style.opacity = 1;
-}
+function hideElement(element) { document.getElementById(element).style.display = "none"; }
 
-function highlightDown(element) {
-    document.getElementById(element).style.opacity = 0.1;
-}
+function showElement(element) { document.getElementById(element).style.display = "inline"; }
+function highlightUp(element) { document.getElementById(element).style.opacity = 1; }
 
-function keepPromptTake() {
-    authenticationStep ++
-    console.log("authentication continuing to step", authenticationStep)
+function highlightDown(element) { document.getElementById(element).style.opacity = 0.1; }
+
+function keepPrompt() {
+    authenticationStep++
+    hideElement("recordButton1")
+    hideElement("stopButton1")
+    hideElement("playButton1")
     highlightDown("step1Text")
     hideElement("keepPromptQuestion")
     hideElement("yesPromptButton")
-    hideElement("noPromptButton")
     highlightUp("step2Text")
     highlightUp("step2Instructions")
     showElement("step2Instructions")
+    showElement("recordButton2")
 }
 
-function discardPromptTake() {
-    document.location.reload();
+function keepTake1() {
+    authenticationStep++
+    hideElement("recordButton2")
+    hideElement("stopButton2")
+    hideElement("playButton2")
+    highlightDown("step2Text")
+    hideElement("keepTake1Question")
+    hideElement("yesTake1Button")
+    highlightUp("step3Text")
+    showElement("step3Instructions")
+    showElement("recordButton3")
 }
+
+function keepTake2() {
+    authenticationStep++
+    hideElement("recordButton3")
+    hideElement("stopButton3")
+    hideElement("playButton3")
+    highlightDown("step3Text")
+    hideElement("yesTake2Button")
+    console.log("AUTHENTICATION TRIGGERED")
+    console.log(passNoteAuthenticator(take1, take2))
+    tryAuthentication(take1, take2)
+}
+
+function tryAuthentication(take1, take2) {
+    hideElement("step1Text")
+    hideElement("step2Text")
+    hideElement("step3Text")
+    hideElement("yesTake2Button")
+    if (passNoteAuthenticator(take1, take2)) {
+        authenticationStep++
+        document.body.style.backgroundColor = "lightSkyBlue";
+        showElement("note")
+        showElement("saveNote")
+    }
+    else {
+        showElement('authFailed')
+        authenticationStep-- // fix this so it actually sends user back a step
+    }
+}
+
+// function saveNote() {
+//     var data = {
+//         "prompt": prompt, 
+//         "password": take1,
+//         "content":,document.getElementById('note').value
+//     }
+//     console.log(data)
+    
+// }
