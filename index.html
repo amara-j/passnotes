@@ -167,7 +167,7 @@
             top: 720px;
         }
 
-        #authButton {
+        #continueButton3{
             position: relative;
             top: 720px;
             left: 850px;
@@ -242,7 +242,7 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
     <button class='recordButton' id="recordButton1" onclick="record('recordButton1', prompt)">Record</button>
-    <button class='stopButton' id="stopButton1" onclick="stopPrompt()">Stop</button>
+    <button class='stopButton' id="stopButton1" onclick="generalizedStop('stopButton1', prompt)">Stop</button>
     <button class='playButton' id="playButton1" onclick="play(prompt)">Play</button>
     <p class='text' id="step1Text">Perform your musical prompt</p>
     <p class='text' id="step1Instructions">Use the keyboard to practice. <br>
@@ -250,7 +250,7 @@
         When you're done, press stop.</p>
     <button class='continueButton' id="continueButton1" onclick="keepPrompt()">Continue</button>
     <button class='recordButton' id="recordButton2" onclick="record('recordButton2', take1)">Record</button>
-    <button class='stopButton' id="stopButton2" onclick="stopTake1()">Stop</button>
+    <button class='stopButton' id="stopButton2" onclick="generalizedStop('stopButton2', take1)">Stop</button>
     <button class='playButton' id="playButton2" onclick="play(take1)">Play</button>
     <p class='text' id="step2Text">Perform your musical response</p>
     <p class='text' id="step2Instructions">Press record again to save a <br>
@@ -260,9 +260,9 @@
     <p class='text' id="step3Text">Confirm your musical response</p>
     <p class='text' id="step3Instructions">Confirm your response <br> by recording again.</p>
     <button class='recordButton' id="recordButton3" onclick="record('recordButton3', take2)">Record</button>
-    <button class='stopButton' id="stopButton3" onclick="stopTake2()">Stop</button>
+    <button class='stopButton' id="stopButton3" onclick="generalizedStop('stopButton3', take2)">Stop</button>
     <button class='playButton' id="playButton3" onclick="play(take2)">Play</button>
-    <button id="authButton" onclick="keepTake2()">Authenticate</button>
+    <button id="continueButton3" onclick="keepTake2()">Authenticate</button>
     <button id="authFailed">AUTHENTICATION FAILED</button>
     <textarea type="text" id="note"> </textarea>
     <button id="saveNote" onclick="saveNote()">Save</button>

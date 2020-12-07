@@ -38,6 +38,20 @@ function record(selfID, recordArray) {
     recordArray = []
 }
 
+
+function generalizedStop(selfID, recordArray) {
+    console.log('generalized stoppp')
+    const buttonIndex = selfID.slice(-1);
+    isRecording = 0;
+    if (recordArray.length > 0) {
+        processPerformance(recordArray)
+        showElement(`playButton${buttonIndex}`)
+        showElement(`continueButton${buttonIndex}`)
+        updateText(`step${buttonIndex}Instructions`, `continueText${buttonIndex}`)
+    }
+}
+
+
 function stopPrompt() {
     isRecording = 0
     if (prompt.length > 0) {
@@ -69,7 +83,6 @@ function stopTake2() {
         console.log(take2)
     }
 }
-
 
 function play(array) {
     Tone.start()
