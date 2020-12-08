@@ -84,7 +84,7 @@
             top: 400px;
             left: 750px;
         }
-        
+
         .recordButton {
             position: relative;
             background-color: rgba(26, 25, 25, 0.98);
@@ -167,7 +167,7 @@
             top: 720px;
         }
 
-        #continueButton3{
+        #continueButton3 {
             position: relative;
             top: 720px;
             left: 850px;
@@ -241,8 +241,14 @@
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
+<<<<<<< HEAD
     <button class='recordButton' id="recordButton1" onclick="record(authStep, prompt)">Record</button>
     <button class='stopButton' id="stopButton1" onclick="stop(authStep, prompt)">Stop</button>
+=======
+    <script src="frontend/authenicate.js"></script>
+    <button class='recordButton' id="recordButton1" onclick="record('recordButton1', prompt)">Record</button>
+    <button class='stopButton' id="stopButton1" onclick="generalizedStop('stopButton1', prompt)">Stop</button>
+>>>>>>> a8d29849e35e9f9cea8b69a0b00fd66515a2e433
     <button class='playButton' id="playButton1" onclick="play(prompt)">Play</button>
     <p class='text' id="step1Text">Perform your musical prompt</p>
     <p class='text' id="step1Instructions">Use the keyboard to practice. <br>

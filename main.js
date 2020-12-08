@@ -68,6 +68,12 @@ function play(array) {
     }
 }
 
+
+function recordHelper(array, note) {
+    array.push([Date.now(), note])
+}
+
+
 document.addEventListener('keydown', function (e) {
     let note = asciToNote[e.code];
     if (note && authStep < 4) {
@@ -88,44 +94,25 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-
-//compute the difference between two performances to decide whether passwords match
-function authenticate(original, take2,) {
-    // first test: are the two arrays the same length:
-    let sameLength = original.length === take2.length;
-    let sameNotes = false;
-    let sameRhythm = false;
-    if (sameLength) { // if length is the same, check that each note is the same
-        for (let i = 0; i < original.length; i++) {
-            if (original[i][1] != take2[i][1]) {
-                sameNotes = false
-                break
-            } else { sameNotes = true }
-        }
-    }
-    if (sameLength && sameNotes) { // if length and each note are the same, check rhythm
-        for (let i = 0; i < original.length; i++) {
-            if (Math.abs(original[i][0] - take2[i][0]) > backBeatThreshold) {
-                sameRhythm = false
-                break
-            } else { sameRhythm = true }
-        }
-        console.log("same length:", sameLength)
-        console.log("same notes:", sameNotes)
-        console.log("same rhythm:", sameRhythm)
-    }
-    if (sameLength && sameNotes && sameRhythm) { return true }
-    { return false }
+function updateText(element, newText) {
+    document.getElementById(element).innerHTML = newText
 }
 
-function updateText(element, newText) { document.getElementById(element).innerHTML = newText }
+function hideElement(element) {
+    document.getElementById(element).style.display = "none";
+}
 
-function hideElement(element) { document.getElementById(element).style.display = "none"; }
+function showElement(element) {
+    document.getElementById(element).style.display = "inline";
+}
 
-function showElement(element) { document.getElementById(element).style.display = "inline"; }
-function highlightUp(element) { document.getElementById(element).style.opacity = 1; }
+function highlightUp(element) {
+    document.getElementById(element).style.opacity = 1;
+}
 
-function highlightDown(element) { document.getElementById(element).style.opacity = 0.1; }
+function highlightDown(element) {
+    document.getElementById(element).style.opacity = 0.1;
+}
 
 function keepPrompt() {
     authStep++
@@ -159,8 +146,9 @@ function keepTake2() {
     hideElement("recordButton3")
     hideElement("stopButton3")
     hideElement("playButton3")
-    hideElement("continueButton3")
-    console.log(authenticate(take1, take2))
+    // highlightDown("step3Text")
+    hideElement("authButton")
+    console.log("AUTHENTICATION TRIGGERED")
     tryAuthentication(take1, take2)
 }
 
@@ -168,13 +156,13 @@ function tryAuthentication(take1, take2) {
     hideElement("step1Text")
     hideElement("step2Text")
     hideElement("step3Text")
+    hideElement("authButton")
     if (authenticate(take1, take2)) {
-        authStep++
+        authenticationStep++
         document.body.style.backgroundColor = "lightSkyBlue";
         showElement("note")
         showElement("saveNote")
-    }
-    else {
+    } else {
         showElement('authFailed')
         authStep-- // fix this so it actually sends user back a step
     }
