@@ -55,13 +55,6 @@
             left: 300px;
         }
 
-        #step3Instructions {
-            left: 980px;
-            top: 600px;
-            font-size: 36px;
-            display: none;
-        }
-
         .continueButton {
             position: relative;
             background-color: rgba(26, 25, 25, 0.98);
@@ -241,30 +234,25 @@
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
-<<<<<<< HEAD
-    <button class='recordButton' id="recordButton1" onclick="record(authStep, prompt)">Record</button>
-    <button class='stopButton' id="stopButton1" onclick="stop(authStep, prompt)">Stop</button>
-=======
-    <script src="frontend/authenicate.js"></script>
-    <button class='recordButton' id="recordButton1" onclick="record('recordButton1', prompt)">Record</button>
-    <button class='stopButton' id="stopButton1" onclick="generalizedStop('stopButton1', prompt)">Stop</button>
->>>>>>> a8d29849e35e9f9cea8b69a0b00fd66515a2e433
-    <button class='playButton' id="playButton1" onclick="play(prompt)">Play</button>
-    <p class='text' id="step1Text">Perform your musical prompt</p>
+    <script src="frontend/authenticate.js"></script>
+    <script src="frontend/init.js"></script>
+    <button class='recordButton' id="recordButton1" onclick="record(authStep, take0)">Record</button>
+    <button class='stopButton' id="stopButton1" onclick="stop(authStep, take0)">Stop</button>
+    <button class='playButton' id="playButton1" onclick="play(take0)">Play</button>
+    <p class='text' id="step1Text">Perform your musical prompt.</p>
     <p class='text' id="step1Instructions">Use the keyboard to practice. <br>
         Press record when you're ready. <br>
         When you're done, press stop.</p>
-    <button class='continueButton' id="continueButton1" onclick="keepPrompt()">Continue</button>
+    <button class='continueButton' id="continueButton1" onclick="keepTake0()">Continue</button>
     <button class='recordButton' id="recordButton2" onclick="record(authStep, take1)">Record</button>
     <button class='stopButton' id="stopButton2" onclick="stop(authStep, take1)">Stop</button>
     <button class='playButton' id="playButton2" onclick="play(take1)">Play</button>
     <p class='text' id="step2Text">Perform your musical response</p>
     <p class='text' id="step2Instructions">Press record again to save a <br>
-        response to your prompt. <br>
+        response to your take0. <br>
         Press stop when you're done.</p>
     <button class='continueButton' id="continueButton2" onclick="keepTake1()">Continue</button>
     <p class='text' id="step3Text">Confirm your musical response</p>
-    <p class='text' id="step3Instructions">Confirm your response <br> by recording again.</p>
     <button class='recordButton' id="recordButton3" onclick="record(authStep, take2)">Record</button>
     <button class='stopButton' id="stopButton3" onclick="stop(authStep, take2)">Stop</button>
     <button class='playButton' id="playButton3" onclick="play(take2)">Play</button>
