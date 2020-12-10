@@ -35,7 +35,9 @@ function play(array) {
     }
 }
 
-function recordHelper(array, note) { array.push([Date.now(), note]) }
+function recordHelper(array, note) {
+    array.push([Date.now(), note])
+}
 
 
 function recordHelper(array, note) {
@@ -121,7 +123,7 @@ function tryAuthentication(take1, take2) {
     hideElement("step2Text")
     hideElement("step3Text")
     if (authenticate(take1, take2)) {
-        authenticationStep++
+        authStep++
         document.body.style.backgroundColor = "lightSkyBlue";
         showElement("note")
         showElement("saveNote")
@@ -129,4 +131,55 @@ function tryAuthentication(take1, take2) {
         showElement('authFailed')
         authStep-- // fix this so it actually sends user back a step
     }
+}
+
+//backend integration from here on down
+
+//TODO: replace https://localhost:8080 with an ENVIRONMENT VARIABLE
+//Potentially can be handled with webpack (dependency)
+
+function sendHttpRequest(method, url, data) {
+    const promise = new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest()
+        xhr.open(method, url)
+        xhr.responseType = 'json'
+        if (data) {
+            xhr.setRequestHeader('Content-Type', 'application/json')
+        }
+        xhr.onload = () => {
+            resolve(xhr.response)
+        }
+        xhr.send(JSON.stringify(data))
+    })
+    return promise
+}
+
+function getNotes() {
+    sendHttpRequest("GET", "http://localhost:8080/noteboard")
+        .then(response => console.log(response))
+}
+
+function saveNote() {
+    const requestBody = {
+        title: "Test Title",
+        content: document.getElementById('saveNote').value,
+        prompt: take0,
+        password: take1
+    }
+    sendHttpRequest("POST", "http://localhost:8080/noteboard", requestBody)
+        .then(response => console.log(response))
+}
+
+function getPrompt(post_id) {
+    sendHttpRequest("GET", `http://localhost:8080/noteboard/${post_id}`)
+        .then(response => console.log(response))
+}
+
+function verifyPassword(post_id, post_attempt) {
+    const requestBody = {
+        id: post_id,
+        attempt: post_attempt
+    }
+    sendHttpRequest("POST", `http://localhost:8080/noteboard/${id}`, requestBody)
+        .then(response => console.log(response))
 }
