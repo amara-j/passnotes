@@ -27,6 +27,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 app.use(bodyParser.json())
+
+//CORS handling
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
     res.header('Access-Control-Allow-Headers', '*')
@@ -38,7 +40,6 @@ app.use((req, res, next) => {
 })
 
 // route requests
-// localhost:8080/auth {id: id, attempt:[]}
 app.use("/noteboard", NoteboardRoutes);
 app.use("/auth", AuthRoutes);
 
@@ -60,22 +61,3 @@ app.use((error, req, res, next) => {
 })
 
 module.exports = app;
-
-/*
-TODO
-
-Sanity testing
-[x] GET: Successfully send a get request from the front end to the backend.
-[x] POST: Receive and parse data from a POST request from the front end, and log 
-to stdout
-[x] any: Deal with CORS headers so client can receive status codes
-
-Feature development
-[x] POST: "save" request that writes the data from the front end to a database
-[ ] fix: eliminate id-writing for child note objects, to remove middleware
-[ ] GET: "show" request that sends back all the titles and id's
-[ ] POST: "select" request that sends an ID and returns the prompt for the browser 
-to render
-[ ] POST: "validate" request that compares attempt to true password, and returns 
-content if it validates
-*/
