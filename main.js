@@ -162,7 +162,7 @@ function getNotes() {
 function saveNote() {
     const requestBody = {
         title: "Test Title",
-        content: document.getElementById('saveNote').value,
+        content: document.getElementById('note').value,
         prompt: take0,
         password: take1
     }
