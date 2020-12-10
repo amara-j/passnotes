@@ -197,15 +197,3 @@ function tryAuthentication(take1, take2) {
         authenticationStep-- // fix this so it actually sends user back a step
     }
 }
-
-
-
-// function saveNote() {
-//     var data = {
-//         "prompt": prompt, 
-//         "password": take1,
-//         "content":,document.getElementById('note').value
-//     }
-//     console.log(data)
-
-// }
