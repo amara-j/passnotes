@@ -3,30 +3,24 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const {
     authenticate
-} = require('../../../frontend/authenticate.js') //how to access main.js???
+} = require('../../frontend/authenticate.js')
 
 const Note = require('../models/note')
 
 router.post('/', async (req, res, next) => {
-    /*
-    1x. receive an _id and a password attempt.
-    2x. retrieve the true password from the database
-    3x. Compare the two
-    4. Handle the outcome (true vs false)
-    */
-
-    //step 1
+    //step 1 - parse the request body
     var id = req.body.id
     var attempt = req.body.attempt
 
-    //step 2
+    //step 2 - find the matching password in the db
     const query = await Note.findById(id).select('password -_id').exec()
     const password = query.password
-    //steps 3&4
     if (authenticate(password, attempt)) {
+        //step 3 - serve the content on a successful attempt
         const content = await Note.findById(id).select('content -_id').exec()
         res.status(200).json(content)
     } else {
+        //step 4 - serve a bad response on a failed attempt
         res.status(401).json({
             message: "passwords do not match."
         })
