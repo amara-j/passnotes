@@ -2,7 +2,7 @@ const backBeatThreshold = 500; // amount of rhythmic difference (millisec) to al
 // should we somehow be accounting for time stretches/tempo differences? :/
 
 //function to compute the difference between two performances
-function authenticate(original, take2, ) {
+function authenticate(original, take2,) {
     // first test: are the two arrays the same length:
     let sameLength = original.length === take2.length;
     let sameNotes = false;

@@ -13,7 +13,7 @@ function stop(authStep, recordArray) {
         recordArray = processPerformance(recordArray)
         showElement(`playButton${authStepString}`)
         showElement(`continueButton${authStepString}`)
-        updateText(`step${authStepString}Instructions`, continueTextArray[authStepString])
+        // updateText(`step${authStepString}Instructions`, continueTextArray[authStepString])
     }
 }
 
@@ -125,6 +125,7 @@ function tryAuthentication(take1, take2) {
     if (authenticate(take1, take2)) {
         authStep++
         document.body.style.backgroundColor = "lightSkyBlue";
+        showElement("noteTitle")
         showElement("note")
         showElement("saveNote")
     } else {
