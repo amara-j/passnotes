@@ -1,5 +1,12 @@
+//get window dimensions for scaling to fit
+// does once on load, could add event listener to rescale with resize
+let windowDimensions = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
+
 function sendHttpRequest(method, url, data) {
-    const promise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest()
         xhr.open(method, url)
         xhr.responseType = 'json'
@@ -11,14 +18,12 @@ function sendHttpRequest(method, url, data) {
         }
         xhr.send(JSON.stringify(data))
     })
-    return promise
 }
 
-function getNotes() {
-    const response = sendHttpRequest("GET", "http://localhost:8080/noteboard").then()
+async function getNotes() {
+    let response = await sendHttpRequest("GET", "http://localhost:8080/noteboard")
     return response
 }
-
 
 function saveNote() {
     const requestBody = {
@@ -45,19 +50,30 @@ function verifyPassword(post_id, post_attempt) {
         .then(response => console.log(response))
 }
 
-function addElement(id, text) {
+function addNoteElement(note_content_array, i) {
     const newNote = document.createElement("div");
-    const newContent = document.createTextNode(text);
-    newNote.setAttribute('id', `${id}`)
-    newNote.setAttribute('class', 'noteboard')
-    newNote.appendChild(newContent);
+    newNote.setAttribute('class', 'note')
+    newNote.style.backgroundColor = 'gold';
+    newNote.style.width = "500px"
+    newNote.style.margin = "10px"
+    newNote.style.height = "500px"
+    id = note_content_array[i]["_id"]
+    title = note_content_array[i]["title"]
+    newNote.setAttribute('id', id)
+    newNote.innerHTML = `<h1> ${title} <h1>`
+    noteborder.append(newNote)
 }
 
-function generateNoteboard() {
-    const notes = getNotes() // returns an array of note titles
+async function generateNoteboard() {
+    // create invisible div as border of noteboard to append notes to
+    const noteborder = document.createElement("div");
+    noteborder.id = 'noteborder'
+    noteborder.style.width = `${windowDimensions.width}px`;
+    noteborder.style.height = `${windowDimensions.height}px`;
+    noteborder.style.border = "none"
+    document.body.appendChild(noteborder);
+    const notes = await getNotes() // returns an array of note content
     for (let i = 0; i < notes.length; i++) {
-        id = notes[i]["_id"]
-        text = notes[i]["title"]
-        addElement(id, text)
+        addNoteElement(notes, i)
     }
 }
