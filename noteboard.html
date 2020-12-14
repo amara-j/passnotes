@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <style>
+        .foo .cards {
+            display: None;
+        }
+
+        .cards {
+            background-color: yellow;
+        }
+
+        .focused {
+            background-color: green;
+        }
+
+        :not(.foo)>.focused {
+            display: None;
+        }
+    </style>
+    <title>Noteboard</title>
+</head>
+
+<body class="">
+    <script>
+        function toggleState() {
+            document.body.classList.toggle("foo")
+        }
+    </script>
+    <div class="cards">test</div>
+    <br>
+    <div class="cards">foo</div>
+    <br>
+    <div class="focused">content</div>
+    <br>
+    <div class="third">another</div>
+    <button id="state" onclick="toggleState()">Toggle State</button>
+    <button id="state" onclick="toggleState()">Toggle State</button>
+
+
+</body>
+
+</html>
