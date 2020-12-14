@@ -7,10 +7,20 @@
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <style>
-        #noteborder{
-            width: 500px;
-            height: 500px;
-            border: 2px solid black;
+        #noteborder {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-rows: repeat(auto-fit, minmax(250px,1fr));
+            column-gap: 10px;
+            row-gap: 10px;
+        }
+        
+        .note {
+            text-align: center;
+            grid-gap: 1rem;
+            background-color:gold;
+            width:250px;
+            height: 250px;
         }
     </style>
 </head>
@@ -20,7 +30,6 @@
     <script src="frontend/authenticate.js"></script>
     <script src="frontend/init.js"></script>
     <button id="showNoteboard" onclick="generateNoteboard()">Show Noteboard</button>
-    <button id="createNoteElement" onclick="addElement()">create note element</button>
     <script src="noteboard.js"></script>
 </body>
 

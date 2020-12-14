@@ -1,10 +1,3 @@
-//get window dimensions for scaling to fit
-// does once on load, could add event listener to rescale with resize
-let windowDimensions = {
-    width: window.innerWidth,
-    height: window.innerHeight
-}
-
 function sendHttpRequest(method, url, data) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest()
@@ -52,25 +45,18 @@ function verifyPassword(post_id, post_attempt) {
 
 function addNoteElement(note_content_array, i) {
     const newNote = document.createElement("div");
-    newNote.setAttribute('class', 'note')
-    newNote.style.backgroundColor = 'gold';
-    newNote.style.width = "500px"
-    newNote.style.margin = "10px"
-    newNote.style.height = "500px"
+    newNote.classList.add('note');
     id = note_content_array[i]["_id"]
     title = note_content_array[i]["title"]
     newNote.setAttribute('id', id)
     newNote.innerHTML = `<h1> ${title} <h1>`
-    noteborder.append(newNote)
+    noteborder.appendChild(newNote)
 }
 
 async function generateNoteboard() {
     // create invisible div as border of noteboard to append notes to
     const noteborder = document.createElement("div");
     noteborder.id = 'noteborder'
-    noteborder.style.width = `${windowDimensions.width}px`;
-    noteborder.style.height = `${windowDimensions.height}px`;
-    noteborder.style.border = "none"
     document.body.appendChild(noteborder);
     const notes = await getNotes() // returns an array of note content
     for (let i = 0; i < notes.length; i++) {
