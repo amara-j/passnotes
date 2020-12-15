@@ -29,9 +29,9 @@ function saveNote() {
         .then(response => console.log(response))
 }
 
-function getPrompt(post_id) {
-    sendHttpRequest("GET", `http://localhost:8080/noteboard/${post_id}`)
-        .then(response => console.log(response))
+async function getPrompt(post_id) {
+    let response = await sendHttpRequest("GET", `http://localhost:8080/noteboard/${post_id}`)
+    return response
 }
 
 function verifyPassword(post_id, post_attempt) {
@@ -50,6 +50,10 @@ function addNoteElement(note_content_array, i) {
     title = note_content_array[i]["title"]
     newNote.setAttribute('id', id)
     newNote.innerHTML = `<h1> ${title} <h1>`
+    newNote.onclick = async function () {
+        note_prompt = await getPrompt(newNote.id)
+        play(note_prompt["prompt"])
+    }
     noteborder.appendChild(newNote)
 }
 
@@ -63,3 +67,5 @@ async function generateNoteboard() {
         addNoteElement(notes, i)
     }
 }
+
+generateNoteboard()

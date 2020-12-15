@@ -10,16 +10,16 @@
         #noteborder {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-template-rows: repeat(auto-fit, minmax(250px,1fr));
+            grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
             column-gap: 10px;
             row-gap: 10px;
         }
-        
+
         .note {
             text-align: center;
             grid-gap: 1rem;
-            background-color:gold;
-            width:250px;
+            background-color: gold;
+            width: 250px;
             height: 250px;
         }
     </style>
@@ -27,9 +27,10 @@
 
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="frontend/authenticate.js"></script>
     <script src="frontend/init.js"></script>
-    <button id="showNoteboard" onclick="generateNoteboard()">Show Noteboard</button>
+    <script src="frontend/play.js"></script>
     <script src="noteboard.js"></script>
 </body>
 
