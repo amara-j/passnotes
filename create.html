@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Passnote s</title>
+    <title>Passnotes</title>
     <link rel="stylesheet" href="css/styles.css?v=1.0">
 
     <style>
@@ -212,13 +212,13 @@
             font-size: 24px;
         }
 
-        #note{
+        #note {
             height: 500px;
             width: 500px;
             top: 50px;
         }
 
-        #noteTitle{
+        #noteTitle {
             top: 0px;
             height: 50px;
             width: 500px;
@@ -245,6 +245,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
     <script src="frontend/authenticate.js"></script>
     <script src="frontend/init.js"></script>
+    <script src="frontend/play.js"></script>
     <button class='recordButton' id="recordButton1" onclick="record(authStep, take0)">Record</button>
     <button class='stopButton' id="stopButton1" onclick="stop(authStep, take0)">Stop</button>
     <button class='playButton' id="playButton1" onclick="play(take0)">Play</button>
@@ -270,7 +271,7 @@
     <textarea class='note' type="text" id="noteTitle"> </textarea>
     <textarea class='note' type="text" id="note"> </textarea>
     <button id="saveNote" onclick="saveNote()">Save</button>
-    <script src="main.js"></script>
+    <script src="create.js"></script>
 </body>
 
 </html>
