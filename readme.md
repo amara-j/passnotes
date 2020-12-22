@@ -29,17 +29,17 @@ musical passwords let you unlock a secret message board
 ## Roadmap
 
 Component Design
-(amara) - [ ] Finish Noteboard View 1 (Noteboard)
-(azhad) - [ ] Finish Noteboard View 2 (Password Input)
-(amara) - [ ] Finish Noteboard View 3 (View/Reply to Note)
-(pair ) - [ ] Build "State Toggler" in CSS
+- [ ] Finish Noteboard View 1 (Noteboard) (amara)
+- [ ] Finish Noteboard View 2 (Password Input) (azhad)
+- [ ] Finish Noteboard View 3 (View/Reply to Note) (amara)
+- [ ] Build "State Toggler" in CSS (pair)
 
 Backend
-(amara) - [ ] Update messages with replies 
+- [ ] Update messages with replies (amara)
 
 Pre-Launch Bugfixes
-(azhad) - [ ] Handle failed authentication on "Create" Page
-(azhad) - [ ] Button to go from "Save Note" to Noteboard ("Create" Page Frame 2)
+- [ ] Handle failed authentication on "Create" Page (azhad)
+- [ ] Button to go from "Save Note" to Noteboard ("Create" Page Frame 2) (azhad)
 
 0.1 Deployment
 - [ ] Deploy and get the app live (with infinite scroll)
