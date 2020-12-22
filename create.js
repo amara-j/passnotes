@@ -1,3 +1,12 @@
+const continueTextArray = ["", "Record as many times as you like until you're happy with your take.", "Press continue to save your take.", ""]
+
+let take0 = []
+let take1 = []
+let take2 = []
+let authStep = 1
+let timeElapsed = 0;
+let isRecording = 0;
+
 function record(authStep, recordArray) {
     authStepString = authStep.toString()
     showElement(`stopButton${authStepString}`)
@@ -153,7 +162,7 @@ function getNotes() {
 
 function saveNote() {
     const requestBody = {
-        title: "Test Title",
+        title: document.getElementById('noteTitle').value,
         content: document.getElementById('note').value,
         prompt: take0,
         password: take1

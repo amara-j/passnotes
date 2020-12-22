@@ -1,3 +1,10 @@
+var state = 0
+
+document.addEventListener('keydown', function (e) {
+    let note = asciToNote[e.code];
+    synth.triggerAttackRelease(note, 0.1);
+})
+
 function sendHttpRequest(method, url, data) {
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest()
@@ -16,17 +23,6 @@ function sendHttpRequest(method, url, data) {
 async function getNotes() {
     let response = await sendHttpRequest("GET", "http://localhost:8080/noteboard")
     return response
-}
-
-function saveNote() {
-    const requestBody = {
-        title: "Test Title",
-        content: document.getElementById('saveNote').value,
-        prompt: take0,
-        password: take1
-    }
-    sendHttpRequest("POST", "http://localhost:8080/noteboard", requestBody)
-        .then(response => console.log(response))
 }
 
 async function getPrompt(post_id) {

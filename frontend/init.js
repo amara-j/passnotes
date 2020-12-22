@@ -1,4 +1,3 @@
-const continueTextArray = ["", "Record as many times as you like until you're happy with your take.", "Press continue to save your take.", ""]
 const synth = new Tone.Synth().toDestination();
 const asciToNote = {
     "KeyA": "C4",
@@ -18,10 +17,3 @@ const asciToNote = {
     "KeyL": "D5",
     "Semicolon": "E5"
 }
-
-let take0 = []
-let take1 = []
-let take2 = []
-let authStep = 1
-let timeElapsed = 0;
-let isRecording = 0;
