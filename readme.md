@@ -28,14 +28,18 @@ musical passwords let you unlock a secret message board
 
 ## Roadmap
 
-- [ ] Finish Noteboard Frame 1 (Noteboard)
-- [ ] Finish Noteboard Frame 2 (Password Input)
-- [ ] Finish Noteboard Frame 3 (View/Reply to Note)
-- [ ] Build "State Rig" in CSS 
+Component Design
+(amara) - [ ] Finish Noteboard View 1 (Noteboard)
+(azhad) - [ ] Finish Noteboard View 2 (Password Input)
+(amara) - [ ] Finish Noteboard View 3 (View/Reply to Note)
+(pair ) - [ ] Build "State Toggler" in CSS
+
+Backend
+(amara) - [ ] Update messages with replies 
 
 Pre-Launch Bugfixes
-- [ ] Handle failed authentication on "Create" Page
-- [ ] Button to go from "Save Note" to Noteboard ("Create" Page Frame 2)
+(azhad) - [ ] Handle failed authentication on "Create" Page
+(azhad) - [ ] Button to go from "Save Note" to Noteboard ("Create" Page Frame 2)
 
 0.1 Deployment
 - [ ] Deploy and get the app live (with infinite scroll)
