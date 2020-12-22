@@ -25,3 +25,24 @@ musical passwords let you unlock a secret message board
 
 1. Run `npm start` from the repo's root directory
 2. Run `index.html`
+
+## Roadmap
+
+- [ ] Finish Noteboard Frame 1 (Noteboard)
+- [ ] Finish Noteboard Frame 2 (Password Input)
+- [ ] Finish Noteboard Frame 3 (View/Reply to Note)
+- [ ] Build "State Rig" in CSS 
+
+Pre-Launch Bugfixes
+- [ ] Handle failed authentication on "Create" Page
+- [ ] Button to go from "Save Note" to Noteboard ("Create" Page Frame 2)
+
+0.1 Deployment
+- [ ] Deploy and get the app live (with infinite scroll)
+
+0.2 Search and Pagination
+- [ ] Implement search bar to lookup a note quickly
+- [ ] Implement pagination (limit 8 notes per page)
+
+0.3 Dynamic Sheet Music
+- [ ] Implement realtime sheet music notation on Noteboard Frame 2
