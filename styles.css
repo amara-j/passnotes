@@ -1,0 +1,21 @@
+.key {
+    border: 1px solid black;
+    top: 0px;
+    position: absolute;
+}
+
+.black {
+    background-color: black;
+    z-index: 1;
+}
+
+.white {
+    background-color: white;
+}
+
+.keyboard {
+    /* display: flex; */
+    /* margin: auto; */
+    border: 5px solid red;
+    /* position: relative; */
+}
