@@ -18,8 +18,8 @@ mongoose.connect(
 const app = express();
 
 //route definitions
-const NoteboardRoutes = require("./api/routes/noteboard");
-const AuthRoutes = require("./api/routes/auth");
+const NoteboardRoutes = require("./routes/noteboard");
+const AuthRoutes = require("./routes/auth");
 
 //middleware
 app.use(morgan('dev'))
