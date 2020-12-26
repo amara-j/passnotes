@@ -3,7 +3,7 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const {
     authenticate
-} = require('../../frontend/authenticate.js')
+} = require('../../client/authenticate.js')
 
 const Note = require('../models/note')
 
