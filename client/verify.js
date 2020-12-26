@@ -1,10 +1,21 @@
+import {
+    processPerformance,
+    synth,
+    play
+} from "./transport.js"
+
+import {
+    getPrompt,
+    verifyPassword
+} from "./requests.js"
+
 /*
 https://1000mileworld.com/Portfolio/Piano/keyboard.html
 
 TODO:
 1. (x) Hear sound on keypress
-2. Light up on keypress
-3. Record mechanism
+2. (x) Light up on keypress
+3. (x) Record mechanism
 4. Working I/O
 */
 
@@ -28,6 +39,7 @@ const keycodeToNote = {
     "Semicolon": "E5"
 }
 
+//This is for note labelling later
 const noteToKey = {
     "C4": "A",
     "C#4": "W",
@@ -55,10 +67,11 @@ const notesInOrder = [
     "C5", "C#5", "D5", "D#5", "E5"
 ]
 
-var iWhite = 0
-
 var keyboard = document.getElementById("keyboard")
+keyboard.style.width = 40 * 10 + "px"
+keyboard.style.height = 200 + "px"
 
+var iWhite = 0
 for (var n in notesInOrder) {
     var thisNote = notesInOrder[n]
     var thisKey = document.createElement("div")
@@ -78,16 +91,28 @@ for (var n in notesInOrder) {
     keyboard.appendChild(thisKey)
 }
 
-keyboard.style.width = 40 * 10 + "px"
-keyboard.style.height = 200 + "px"
+var hue = Math.floor(Math.random() * 255)
+const lightKeyboard = (event, note) => {
+    if (note.length > 2) {
+        var upColor = "black"
+    } else {
+        var upColor = "white"
+    }
+    if (event === "down") {
+        document.getElementById(note).style.backgroundColor = `hsl(${hue}, 100%, 80%)`
+    } else {
+        document.getElementById(note).style.backgroundColor = upColor
+    }
+}
 
-const synth = new Tone.Synth().toDestination()
+var attempt = []
 
 document.addEventListener('keydown', (e) => {
     let note = keycodeToNote[e.code];
     if (note) {
         synth.triggerAttackRelease(note, 0.1)
         lightKeyboard("down", note)
+        attempt.push([Date.now(), note])
     }
 });
 
@@ -98,15 +123,31 @@ document.addEventListener('keyup', (e) => {
     }
 });
 
-const lightKeyboard = (event, note) => {
-    if (note.length > 2) {
-        var upColor = "black"
-    } else {
-        var upColor = "white"
-    }
-    if (event === "down") {
-        document.getElementById(note).style.backgroundColor = "purple"
-    } else {
-        document.getElementById(note).style.backgroundColor = upColor
-    }
+var id, musicalPrompt;
+
+window.onload = async () => {
+    id = "5fcd27f1e359f65dc0d8e3f6"
+    musicalPrompt = await getPrompt(id)
+    musicalPrompt = musicalPrompt['prompt']
 }
+
+const empty = array => array.length = 0
+
+document.getElementById("playAgain").addEventListener("click", async () => {
+    play(musicalPrompt)
+    empty(attempt)
+})
+
+document.getElementById("submit").addEventListener("click", async () => {
+    processPerformance(attempt)
+    var response = await verifyPassword(id, attempt)
+    console.log(response)
+})
+
+/*
+Networking
+Studying Algorithms
+Writing Updates for existing Projects
+Making YouTube Videos (on Projects and on Algorithms)
+Working on the next Project (live coding)
+*/

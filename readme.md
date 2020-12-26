@@ -30,7 +30,7 @@ musical passwords let you unlock a secret message board
 
 Component Design
 - [ ] Finish Noteboard View 1 (Noteboard) (amara)
-- [ ] Finish Noteboard View 2 (Password Input) (azhad)
+- [x] Finish Noteboard View 2 (Password Input) (azhad)
 - [ ] Finish Noteboard View 3 (View/Reply to Note) (amara)
 - [ ] Build "State Toggler" in CSS (pair)
 
@@ -50,3 +50,6 @@ Pre-Launch Bugfixes
 
 0.3 Dynamic Sheet Music
 - [ ] Implement realtime sheet music notation on Noteboard Frame 2
+
+0.4 Security
+- [ ] Implement hashing (& salting?)
