@@ -1,0 +1,54 @@
+/* General */
+
+body {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* verify.html */
+
+.instructions {
+    margin: 0;
+}
+
+.keyboard {
+    position: relative;
+}
+
+.key {
+    position: absolute;
+    border: 1px solid black;
+}
+
+.black {
+    z-index: 1;
+}
+
+/* create.html */
+
+.goth {
+    background: black
+}
+
+.container {
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+}
+
+.rightSide {
+    margin: 10px;
+    background-color: lightgreen;
+}
+
+.leftSide {
+    margin: 10px;
+    background-color: lightyellow;
+    /* visibility: hidden; use this to hide but not remove elements*/
+}
