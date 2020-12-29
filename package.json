@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend for passnotes",
-  "main": "app.js",
+  "main": "./api/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon ./api/server.js"
   },
   "author": "azhad syed",
   "license": "ISC",
