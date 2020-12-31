@@ -8,6 +8,8 @@
 
     <style>
         #noteborder {
+            position: relative;
+            top: 10px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
@@ -18,14 +20,29 @@
         .note {
             text-align: center;
             grid-gap: 1rem;
-            background-color: gold;
+            background-color: rgba(255, 215, 0, 0.9);
             width: 250px;
             height: 250px;
         }
+
+        #createButton {
+            background-color: rgb(216, 160, 216);
+            /* width: 125px; */
+            height: 60px;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+        }
     </style>
+
+    <button id="createButton" onclick="createNote()">Create Note</button>
 </head>
 
 <body>
+
+    <div id='noteborder'></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.70/Tone.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="frontend/authenticate.js"></script>

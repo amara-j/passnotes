@@ -42,26 +42,35 @@ function verifyPassword(post_id, post_attempt) {
 function addNoteElement(note_content_array, i) {
     const newNote = document.createElement("div");
     newNote.classList.add('note');
-    id = note_content_array[i]["_id"]
-    title = note_content_array[i]["title"]
+    var id = note_content_array[i]["_id"]
+    var title = note_content_array[i]["title"]
     newNote.setAttribute('id', id)
-    newNote.innerHTML = `<h1> ${title} <h1>`
+    // newNote.innerHTML = `<h1> ${title} <h1>`
     newNote.onclick = async function () {
         note_prompt = await getPrompt(newNote.id)
         play(note_prompt["prompt"])
+    }
+    newNote.onmouseover = function () {
+        this.style.backgroundColor = "rgba(255,215,0, 1)";
+        newNote.innerHTML = `<h1> ${title} <h1>`;
+    }
+    newNote.onmouseout = function () {
+        this.style.backgroundColor = "rgba(255,215,0, 0.9)";
+        newNote.innerHTML = '';
     }
     noteborder.appendChild(newNote)
 }
 
 async function generateNoteboard() {
     // create invisible div as border of noteboard to append notes to
-    const noteborder = document.createElement("div");
-    noteborder.id = 'noteborder'
-    document.body.appendChild(noteborder);
+    // const noteborder = document.createElement("div");
+    // noteborder.id = 'noteborder'
+    // document.body.appendChild(noteborder);
+    noteborder = document.getElementById('noteborder');
+    // noteborder.style.backgroundColor = 'blue';
     const notes = await getNotes() // returns an array of note content
     for (let i = 0; i < notes.length; i++) {
         addNoteElement(notes, i)
     }
 }
-
 generateNoteboard()
