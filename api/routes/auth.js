@@ -1,9 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
-const {
-    authenticate
-} = require('../../client/authenticate.js')
+import authenticate from "../../client/authenticate.js"
 
 const Note = require('../models/note')
 
