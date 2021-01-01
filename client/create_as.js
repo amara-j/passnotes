@@ -173,7 +173,6 @@ window.onload = () => {
         let passwordsMatch = authenticate(recordingPassword.sequence, confirmingPassword.sequence)
         if (passwordsMatch) {
             // handle going to next screen here
-            console.log(confirmingPassword.sequence)
             document.body.innerHTML = ''
             document.body.className = "writeNote"
             let noteui = new NoteUI("writeNote")

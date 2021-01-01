@@ -44,6 +44,10 @@ Pre-Launch Bugfixes
 0.1 Deployment
 - [ ] Deploy and get the app live (with infinite scroll)
 
+0.1.1 Not so 2000-late
+- [ ] redesign create (tabbing through three steps)
+- [ ] button for "create note" on noteboard is in the "next note" slot (paled out, etc.)
+
 0.2 Search and Pagination
 - [ ] Implement search bar to lookup a note quickly
 - [ ] Implement pagination (limit 8 notes per page)
