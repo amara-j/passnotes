@@ -1,4 +1,45 @@
+import {
+    keycodeToNote
+} from "./constants.js"
+
+import {
+    synth,
+    play,
+    processPerformance
+} from "./transport.js"
+
+import authenticate from "./authenticate.js"
+
 let buffer = []
+let recording = false
+
+let NoteUI = class {
+    constructor(id) {
+        this.id = id
+        this.container = document.createElement("div")
+        this.container.className = "noteUI"
+
+        this.titleTextBox = document.createElement("textarea")
+        this.titleTextBox.className = "note"
+        this.titleTextBox.id = "titleContent"
+        this.titleTextBox.placeholder = "write a title for your note here"
+
+        this.noteTextBox = document.createElement("textarea")
+        this.noteTextBox.className = "note"
+        this.noteTextBox.id = "noteContent"
+        this.noteTextBox.placeholder = "write a message here! It will be protected by your musical password."
+
+        this.saveButton = document.createElement("button")
+        this.saveButton.textContent = "Save"
+        this.saveButton.className = "save"
+
+        this.container.appendChild(this.titleTextBox)
+        this.container.appendChild(this.noteTextBox)
+        this.container.appendChild(this.saveButton)
+
+        document.body.appendChild(this.container)
+    }
+}
 
 let Step = class {
     constructor(id, instruction, tip) {
@@ -6,11 +47,13 @@ let Step = class {
         this.tip = tip
         this.sequence = []
         this.active = false
-        // first order - the container
+
+        // first layer - the container
         this.container = document.createElement("div")
         this.container.className = "container"
         this.container.id = id
-        // second order - the sides
+
+        // second layer - the sides
         this.leftSide = document.createElement("div")
         this.leftSide.className = "leftSide"
         this.rightSide = document.createElement("div")
@@ -19,44 +62,147 @@ let Step = class {
             this.rightSide.textContent = tip
             this.rightSide.style.border = "2px solid white"
         }
-        // third order - what goes in the sides
+
+        // third layer - what goes in the sides
         this.instructionBox = document.createElement("div")
         this.instructionBox.className = "instructionBox"
         this.instructionBox.textContent = instruction
         this.buttonBox = document.createElement("div")
         this.buttonBox.className = "buttonBox"
-        // fourth order - what goes in, what goes in the sides
+
+        // fourth layer - what goes in what goes in the sides
         this.recordButton = document.createElement("button")
         this.recordButton.className = "record button"
         this.recordButton.textContent = "Record"
-        this.playButton = document.createElement("button")
-        this.playButton.className = "play button"
-        this.playButton.textContent = "Play"
+        this.recordButton.onclick = () => {
+            recording = true
+            buffer.length = 0
+            this.activate(1)
+        }
+
         this.stopButton = document.createElement("button")
         this.stopButton.className = "stop button"
         this.stopButton.textContent = "Stop"
+        this.stopButton.onclick = () => {
+            recording = false
+            processPerformance(buffer)
+            this.activate(2)
+        }
+
+        this.playButton = document.createElement("button")
+        this.playButton.className = "play button"
+        this.playButton.textContent = "Play"
+        this.playButton.onclick = () => {
+            play(buffer)
+        }
+
         this.continueButton = document.createElement("button")
         this.continueButton.className = "continue button"
         this.continueButton.textContent = "Continue"
+
         // flex-ception: follow the chain back up
         this.buttonBox.appendChild(this.recordButton)
-        this.buttonBox.appendChild(this.playButton)
         this.buttonBox.appendChild(this.stopButton)
+        this.buttonBox.appendChild(this.playButton)
         this.buttonBox.appendChild(this.continueButton)
+
         this.leftSide.appendChild(this.instructionBox)
         this.leftSide.appendChild(this.buttonBox)
+
         this.container.appendChild(this.leftSide)
         this.container.appendChild(this.rightSide)
 
         document.body.appendChild(this.container)
     }
+
+    //tip setter that also enables/disables the white border
+
+    deactivate() {
+        this.rightSide.style.visibility = "hidden"
+        this.recordButton.style.visibility = "hidden"
+        this.stopButton.style.visibility = "hidden"
+        this.playButton.style.visibility = "hidden"
+        this.continueButton.style.visibility = "hidden"
+        this.instructionBox.style.opacity = "0.3"
+    }
+
+    activate(state) {
+        if (this.rightSide.style.visibility === "hidden") {
+            this.rightSide.style.visibility = "visible"
+            this.recordButton.style.visibility = "visible"
+            this.instructionBox.style.opacity = "1"
+        }
+        if (state === 1) {
+            this.stopButton.style.visibility = "visible"
+            this.playButton.style.visibility = "hidden"
+            this.continueButton.style.visibility = "hidden"
+        }
+        if (state === 2) {
+            this.stopButton.style.visibility = "visible"
+            this.playButton.style.visibility = "visible"
+            this.continueButton.style.visibility = "visible"
+        }
+    }
 }
 
 window.onload = () => {
+    document.body.className = "goth"
     let recordingPrompt = new Step("recordingPrompt", "Perform your musical prompt.", "Use the keyboard to practice. \n Press record when you're ready. \n When you're done, press stop.")
     let recordingPassword = new Step("recordingPassword", "Perform your musical response.", "Press record again to save a response to your prompt. Press stop when you're done.")
     let confirmingPassword = new Step("confirmingPassword", "Confirm your musical response.")
+
+    const saveBufferTo = step => {
+        step.sequence = [...buffer]
+        buffer.length = 0
+    }
+    recordingPrompt.continueButton.onclick = () => {
+        saveBufferTo(recordingPrompt)
+        recordingPrompt.deactivate()
+        recordingPassword.activate()
+    }
+
+    recordingPassword.continueButton.onclick = () => {
+        saveBufferTo(recordingPassword)
+        recordingPassword.deactivate()
+        confirmingPassword.activate()
+    }
+
+    confirmingPassword.continueButton.onclick = () => {
+        saveBufferTo(confirmingPassword)
+        // authenticate between the first and second attempt
+        let passwordsMatch = authenticate(recordingPassword.sequence, confirmingPassword.sequence)
+        if (passwordsMatch) {
+            // handle going to next screen here
+            console.log(confirmingPassword.sequence)
+            document.body.innerHTML = ''
+            document.body.className = "writeNote"
+            let noteui = new NoteUI("writeNote")
+            document.removeEventListener("keydown", playKeyboard)
+        } else {
+            confirmingPassword.rightSide.textContent = "Passwords do not match. Try recording again."
+            confirmingPassword.rightSide.style.border = "2px solid red"
+            confirmingPassword.rightSide.style.color = "red"
+        }
+    }
+
+    recordingPrompt.deactivate()
+    recordingPassword.deactivate()
+    confirmingPassword.deactivate()
+
+    recordingPrompt.activate()
 }
+
+const playKeyboard = keyPressed => {
+    let note = keycodeToNote[keyPressed.code]
+    if (note) {
+        if (recording) {
+            buffer.push([Date.now(), note])
+        }
+        synth.triggerAttackRelease(note, 0.1)
+    }
+}
+
+document.addEventListener('keydown', playKeyboard)
 
 /*
 12/31/2020 features to reimplement:
@@ -67,6 +213,28 @@ window.onload = () => {
             - Substate 1 (on load/next event): instructionBox, rightSide, and "record button" are visible"
             - Substate 2 (On clicking record): all previous elements, and "stop button" are visible
             - Substate 3 (on clicking stop): all previous elements, and play/continue buttons are visible
+    - What are the functionalities of each button:
+        - Record: clear the buffer, and start writing notes to it.
+        - Stop: stop writing to the buffer
+        - Play: play the buffer
+        - Continue: 
+            in the case of recordingPrompt and recordingPassword:
+            - save the buffer to the Step's this.buffer property
+            - activate the next Step (method argument?)
+            - and deactivate the current Step.
+            in the case of confirmingPassword:
+            - save the buffer to the Step's this.buffer property
+            - validate recordingPassword's buffer against confirmingPassword's buffer
+            - if the validation is successful: scrap everything in the body and render the note-writing page
+            - else: tell the user the passwords do not match
+                - nice-to-have: give the user a chance to play the old password
+2. How to transition from password-playing screen to note-taking screen
+    - remove the three Step containers from the DOM.
+    - change the class of the body to "writeNote"
+         - baby blue background
+         - place to title note
+         - place to write note
+         - save button
 
 create.js Redesign.
 
