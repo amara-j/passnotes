@@ -1,6 +1,6 @@
 # Passnotes
 
-musical passwords let you unlock a secret message board
+This is a proof of concept for our React implementation of Passnotes, where musical passwords let you unlock a secret message board.  View the live Passnotes version 2.0 [here](https://passnotes.herokuapp.com/)!
 
 ## Usage
 
